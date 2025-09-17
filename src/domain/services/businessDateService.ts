@@ -60,7 +60,7 @@ export class BusinessDateService {
       return date.set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
     }
     if (hour >= 17) {
-      return date.plus({ days: 1 }).set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
+      return date.set({ hour: 17, minute: 0, second: 0, millisecond: 0 });
     }
     if (hour === 12 && minute >= 0 && minute < 60) {
       return date.set({ hour: 13, minute: 0, second: 0, millisecond: 0 });

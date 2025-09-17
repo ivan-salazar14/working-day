@@ -6,9 +6,9 @@ describe('Colombian Business Date Calculator API', () => {
   it('should handle Friday 5:00 p.m. with hours=1', async () => {
     const response = await request(app)
       .get('/api/calculate')
-      .query({ date: '2025-04-11T22:00:00Z', hours: 1 });
+      .query({ date: '2025-07-19T22:00:00Z', hours: 1 });
     expect(response.status).to.equal(200);
-    expect(response.body.date).to.equal('2025-04-14T14:00:00Z');
+    expect(response.body.date).to.equal('2025-07-22T14:00:00Z');
   });
 
   it('should handle Saturday 2:00 p.m. with hours=1', async () => {
@@ -30,9 +30,9 @@ describe('Colombian Business Date Calculator API', () => {
   it('should handle Sunday 6:00 p.m. with days=1', async () => {
     const response = await request(app)
       .get('/api/calculate')
-      .query({ date: '2025-04-13T23:00:00Z', days: 1 });
+      .query({ date: '2025-09-21T23:00:00Z', days: 1 });
     expect(response.status).to.equal(200);
-    expect(response.body.date).to.equal('2025-04-14T22:00:00Z');
+    expect(response.body.date).to.equal('2025-09-22T22:00:00Z');
   });
 
   it('should handle business day 8:00 a.m. with hours=8', async () => {
