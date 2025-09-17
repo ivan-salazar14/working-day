@@ -23,7 +23,7 @@ export class CalculateBusinessDateUseCase {
 
     const holidayDates = await this.businessDateService.getHolidayDates();
     while (!this.businessDateService.isBusinessDay(start, holidayDates)) {
-      start = start.plus({ days: 1 });
+      start = start.plus({ days: 1 }).set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
     }
 
     let result: DateTime = start;
@@ -33,6 +33,6 @@ export class CalculateBusinessDateUseCase {
     if (hours) {
       result = await this.businessDateService.addBusinessHours(result, hours);
     }
-    return result.toUTC().toISO()!;
+    return result.toUTC().toISO({ suppressMilliseconds: true })!;
   }
 }
