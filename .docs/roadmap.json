@@ -31,55 +31,55 @@
       "id": "US-004",
       "title": "Use Custom Start Date in UTC",
       "file": "docs/stories/US-004.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Custom start date support implemented with UTC validation and Bogota conversion."
     },
     {
       "id": "US-005",
       "title": "Handle No Parameters Provided",
       "file": "docs/stories/US-005.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "No parameters validation implemented in use case and controller."
     },
     {
       "id": "US-006",
       "title": "Validate Invalid Parameters",
       "file": "docs/stories/US-006.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Invalid parameters validation implemented in controller."
     },
     {
       "id": "US-007",
       "title": "Adjust Start Time Outside Business Hours",
       "file": "docs/stories/US-007.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Start time adjustment implemented in BusinessDateService."
     },
     {
       "id": "US-008",
       "title": "Handle Lunch Break in Hour Calculations",
       "file": "docs/stories/US-008.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Lunch break handling implemented in isBusinessHour method."
     },
     {
       "id": "US-009",
       "title": "Skip Holidays in Day Additions",
       "file": "docs/stories/US-009.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Holiday skipping implemented in addBusinessDays method."
     },
     {
       "id": "US-010",
