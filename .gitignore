@@ -1,5 +1,5 @@
 node_modules
-.planr
+.planr/
 .env
 .vscode
 .DS_Store
