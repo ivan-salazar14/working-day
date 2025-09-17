@@ -4,10 +4,10 @@
       "id": "US-001",
       "title": "Calculate Business Date with Days Parameter",
       "file": "docs/stories/US-001.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Core business day calculation implemented with hexagonal architecture."
     },
     {
       "id": "US-002",
