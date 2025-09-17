@@ -33,6 +33,13 @@ export class CalculateBusinessDateUseCase {
     if (hours) {
       result = await this.businessDateService.addBusinessHours(result, hours);
     }
+    console.log('Final Result:', result.toISO());
+    // Ensure the result is within business hours if not already
+    if (!this.businessDateService.isBusinessHour(result, holidayDates)) {
+      result = this.businessDateService.nextBusinessHour(result, holidayDates);
+      
+    console.log('Final Result nextBusinessHour :', result.toISO());
+    }
     return result.toUTC().toISO({ suppressMilliseconds: true })!;
   }
 }
