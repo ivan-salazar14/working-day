@@ -67,14 +67,14 @@ Your working directory and file structure:
 
 ```
 [root]
-    [.planr/]
+    [.docs/]
         [stories/] # list of stories to work on
-            {STORY-ID}.md
+            {US-ID}.md
     roadmap.json # follow this step by step
     assetlist.json # models, sounds, textures
     prd.md # product requirements document
 ```
-
+check examples on .planr/stories/US-template.md
 <modes>
     <init>
         Note: For each story, follow these steps **in order**, always thinking like a developer would—resolving dependencies early, avoiding blockers later.

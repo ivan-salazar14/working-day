@@ -1,0 +1,139 @@
+{
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Calculate Business Date with Days Parameter",
+      "file": "docs/stories/US-001.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Calculate Business Date with Hours Parameter",
+      "file": "docs/stories/US-002.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Calculate Business Date with Both Days and Hours",
+      "file": "docs/stories/US-003.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Use Custom Start Date in UTC",
+      "file": "docs/stories/US-004.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Handle No Parameters Provided",
+      "file": "docs/stories/US-005.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Validate Invalid Parameters",
+      "file": "docs/stories/US-006.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Adjust Start Time Outside Business Hours",
+      "file": "docs/stories/US-007.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Handle Lunch Break in Hour Calculations",
+      "file": "docs/stories/US-008.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Skip Holidays in Day Additions",
+      "file": "docs/stories/US-009.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Preserve Start Time When Adding Days",
+      "file": "docs/stories/US-010.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-011",
+      "title": "Handle Edge Case: Adding Zero Days/Hours",
+      "file": "docs/stories/US-011.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-012",
+      "title": "Handle Large Additions Efficiently",
+      "file": "docs/stories/US-012.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-013",
+      "title": "Error on Service Unavailability",
+      "file": "docs/stories/US-013.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-014",
+      "title": "Secure API Access",
+      "file": "docs/stories/US-014.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "US-015",
+      "title": "Set Up Base Project with Hexagonal Architecture",
+      "file": "docs/stories/US-015.md",
+      "status": "todo",
+      "created": "2025-09-17",
+      "updated": "2025-09-17",
+      "notes": ""
+    }
+  ]
+}

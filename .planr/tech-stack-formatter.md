@@ -1,7 +1,7 @@
 Act as markdown formatter. your goal is to create a formatted markdown document for my tech stack
 
 <date>
-latest {{ADD DATE HERE}}
+latest september 2025
 </date>
 
 <tech_stack>
