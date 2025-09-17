@@ -7,10 +7,16 @@ export class BusinessDateController {
   async calculate(req: Request, res: Response): Promise<void> {
     try {
       const days = req.query.days ? parseInt(req.query.days as string, 10) : undefined;
+      const hours = req.query.hours ? parseInt(req.query.hours as string, 10) : undefined;
       const date = req.query.date as string | undefined;
 
       if (days !== undefined && (isNaN(days) || days <= 0)) {
         res.status(400).json({ error: 'InvalidParameters', message: 'Days must be a positive integer' });
+        return;
+      }
+
+      if (hours !== undefined && (isNaN(hours) || hours <= 0)) {
+        res.status(400).json({ error: 'InvalidParameters', message: 'Hours must be a positive integer' });
         return;
       }
 
@@ -19,7 +25,7 @@ export class BusinessDateController {
         return;
       }
 
-      const result = await this.calculateBusinessDateUseCase.execute(days, date);
+      const result = await this.calculateBusinessDateUseCase.execute(days, hours, date);
       res.json({ date: result });
     } catch (error) {
       const message = (error as Error).message;
