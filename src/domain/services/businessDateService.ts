@@ -11,9 +11,13 @@ export class BusinessDateService {
     const holidayDates = new Set(holidays.map(h => h.date));
 
     while (added < days) {
-      current = current.plus({ days: 1 });
       if (this.isBusinessDay(current, holidayDates)) {
         added++;
+        if (added < days) {
+          current = current.plus({ days: 1 });
+        }
+      } else {
+        current = current.plus({ days: 1 });
       }
     }
     return current;
@@ -66,6 +70,31 @@ export class BusinessDateService {
       return date.set({ hour: 13, minute: 0, second: 0, millisecond: 0 });
     }
     return date.set({ second: 0, millisecond: 0 });
+  }
+
+  async adjustToBusinessTimeBackwards(date: DateTime, holidayDates: Set<string>): Promise<DateTime> {
+    let adjusted = date.set({ second: 0, millisecond: 0 });
+
+    // If not a business day, go back to previous business day at 5 PM
+    while (!this.isBusinessDay(adjusted, holidayDates)) {
+      adjusted = adjusted.minus({ days: 1 }).set({ hour: 17, minute: 0 });
+    }
+
+    // If business day but outside hours, adjust backwards within the day
+    const hour = adjusted.hour;
+    if (hour < 8) {
+      // Before business hours: go to 5 PM previous day
+      adjusted = adjusted.minus({ days: 1 }).set({ hour: 17, minute: 0 });
+    } else if (hour >= 17) {
+      // After business hours: stay at 5 PM same day
+      adjusted = adjusted.set({ hour: 17, minute: 0 });
+    } else if (hour === 12) {
+      // Lunch hour: go back to 11 AM
+      adjusted = adjusted.set({ hour: 11, minute: 0 });
+    }
+    // Else: already within business hours, no change
+
+    return adjusted;
   }
 
   isBusinessHour(date: DateTime, holidayDates: Set<string>): boolean {

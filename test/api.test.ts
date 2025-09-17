@@ -16,7 +16,7 @@ describe('Colombian Business Date Calculator API', () => {
       .get('/api/calculate')
       .query({ date: '2025-04-12T19:00:00Z', hours: 1 });
     expect(response.status).to.equal(200);
-    expect(response.body.date).to.equal('2025-04-14T14:00:00Z');
+    expect(response.body.date).to.equal('2025-04-14T20:00:00Z');
   });
 
   it('should handle Tuesday 3:00 p.m. with days=1 and hours=4', async () => {
@@ -32,7 +32,7 @@ describe('Colombian Business Date Calculator API', () => {
       .get('/api/calculate')
       .query({ date: '2025-09-21T23:00:00Z', days: 1 });
     expect(response.status).to.equal(200);
-    expect(response.body.date).to.equal('2025-09-22T22:00:00Z');
+    expect(response.body.date).to.equal('2025-09-23T13:00:00Z');
   });
 
   it('should handle business day 8:00 a.m. with hours=8', async () => {

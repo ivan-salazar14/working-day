@@ -19,12 +19,8 @@ export class CalculateBusinessDateUseCase {
       start = DateTime.now().setZone('America/Bogota');
     }
 
-    start = this.businessDateService.adjustToBusinessTime(start);
-
     const holidayDates = await this.businessDateService.getHolidayDates();
-    while (!this.businessDateService.isBusinessDay(start, holidayDates)) {
-      start = start.plus({ days: 1 }).set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
-    }
+    start = await this.businessDateService.adjustToBusinessTimeBackwards(start, holidayDates);
 
     let result: DateTime = start;
     if (days) {
