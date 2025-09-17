@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Colombian Business Date Calculator API",
+    "description": "API for calculating business dates and times in Colombia",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add 5 business days",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/calculate?days=5",
+          "host": ["{{base_url}}"],
+          "path": ["api", "calculate"],
+          "query": [
+            {
+              "key": "days",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add 10 business hours",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/calculate?hours=10",
+          "host": ["{{base_url}}"],
+          "path": ["api", "calculate"],
+          "query": [
+            {
+              "key": "hours",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add 2 days and 3 hours",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/calculate?days=2&hours=3",
+          "host": ["{{base_url}}"],
+          "path": ["api", "calculate"],
+          "query": [
+            {
+              "key": "days",
+              "value": "2"
+            },
+            {
+              "key": "hours",
+              "value": "3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add 5 days from custom date",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/calculate?date=2025-04-10T15:00:00Z&days=5",
+          "host": ["{{base_url}}"],
+          "path": ["api", "calculate"],
+          "query": [
+            {
+              "key": "date",
+              "value": "2025-04-10T15:00:00Z"
+            },
+            {
+              "key": "days",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Invalid request - no parameters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/calculate",
+          "host": ["{{base_url}}"],
+          "path": ["api", "calculate"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}
