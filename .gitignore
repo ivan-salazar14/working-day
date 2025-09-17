@@ -1,0 +1,6 @@
+node_modules
+.planr
+.env
+.vscode
+.DS_Store
+dist
