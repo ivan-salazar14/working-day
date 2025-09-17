@@ -1,9 +1,6 @@
 import { DateTime } from 'luxon';
 
-export interface Holiday {
-  date: string;
-  name: string;
-}
+export type Holiday = string;
 
 export class HolidaysAdapter {
   private cache: Holiday[] | null = null;

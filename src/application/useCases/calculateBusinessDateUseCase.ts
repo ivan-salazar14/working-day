@@ -18,10 +18,14 @@ export class CalculateBusinessDateUseCase {
     } else {
       start = DateTime.now().setZone('America/Bogota');
     }
-
+    console.log('Initial Start:', start.toISO());
     const holidayDates = await this.businessDateService.getHolidayDates();
-    start = await this.businessDateService.adjustToBusinessTimeBackwards(start, holidayDates);
+    if (!holidayDates) {
+      throw new Error('Unable to fetch holidays data');
+    }
 
+    start = await this.businessDateService.adjustToBusinessTimeBackwards(start, holidayDates);
+    console.log('Adjusted Start:', start.toISO());
     let result: DateTime = start;
     if (days) {
       result = await this.businessDateService.addBusinessDays(result, days);

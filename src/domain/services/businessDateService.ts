@@ -8,7 +8,7 @@ export class BusinessDateService {
     let current = startDate;
     let added = 0;
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    const holidayDates = new Set(holidays.map(h => h.date));
+    const holidayDates = new Set(holidays);
 
     while (added < days) {
       if (this.isBusinessDay(current, holidayDates)) {
@@ -27,7 +27,7 @@ export class BusinessDateService {
     let current = startDate;
     let added = 0;
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    const holidayDates = new Set(holidays.map(h => h.date));
+    const holidayDates = new Set(holidays);
 
     while (added < hours) {
       if (this.isBusinessHour(current, holidayDates)) {
@@ -42,7 +42,7 @@ export class BusinessDateService {
 
   async getHolidayDates(): Promise<Set<string>> {
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    return new Set(holidays.map(h => h.date));
+    return new Set(holidays);
   }
 
   isBusinessDay(date: DateTime, holidayDates: Set<string>): boolean {
