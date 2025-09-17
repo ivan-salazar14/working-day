@@ -91,6 +91,12 @@ GET /api/calculate?date=2025-04-10T15:00:00Z&days=5
 
 The server runs on port 3001 by default.
 
+## Testing
+
+Run tests with: `npm test`
+
+Tests include integration tests for the API endpoints with various scenarios.
+
 ## Postman Collection
 
 Import the `postman_collection.json` file to test the API endpoints.
