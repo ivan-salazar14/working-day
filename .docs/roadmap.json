@@ -130,10 +130,10 @@
       "id": "US-015",
       "title": "Set Up Base Project with Hexagonal Architecture",
       "file": "docs/stories/US-015.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Hexagonal architecture structure set up with all layers and configurations."
     }
   ]
 }
