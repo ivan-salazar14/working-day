@@ -1,0 +1,13 @@
+{
+  "stories": [
+    {
+      "id": "US-example",
+      "title": "Configuración del Entorno de Desarrollo",
+      "file": "docs/stories/US-027.md",
+      "status": "done",
+      "created": "2025-07-09",
+      "updated": "2025-07-15",
+      "notes": "Configuración inicial del proyecto con Python y dependencias necesarias"
+    }
+  ]
+}
