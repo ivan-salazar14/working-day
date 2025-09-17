@@ -4,9 +4,9 @@ import { BusinessDateService } from '../../domain/services/businessDateService';
 export class CalculateBusinessDateUseCase {
   constructor(private businessDateService: BusinessDateService) {}
 
-  async execute(days?: number, date?: string): Promise<string> {
-    if (days === undefined || days <= 0) {
-      throw new Error('Days must be provided and greater than 0');
+  async execute(days?: number, hours?: number, date?: string): Promise<string> {
+    if ((days === undefined || days <= 0) && (hours === undefined || hours <= 0)) {
+      throw new Error('At least one of days or hours must be provided');
     }
 
     let start: DateTime;
@@ -26,7 +26,13 @@ export class CalculateBusinessDateUseCase {
       start = start.plus({ days: 1 });
     }
 
-    const result = await this.businessDateService.addBusinessDays(start, days);
+    let result: DateTime = start;
+    if (days) {
+      result = await this.businessDateService.addBusinessDays(result, days);
+    }
+    if (hours) {
+      result = await this.businessDateService.addBusinessHours(result, hours);
+    }
     return result.toUTC().toISO()!;
   }
 }

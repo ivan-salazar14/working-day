@@ -13,19 +13,19 @@
       "id": "US-002",
       "title": "Calculate Business Date with Hours Parameter",
       "file": "docs/stories/US-002.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Business hours calculation implemented with hexagonal architecture."
     },
     {
       "id": "US-003",
       "title": "Calculate Business Date with Both Days and Hours",
       "file": "docs/stories/US-003.md",
-      "status": "todo",
+      "status": "done",
       "created": "2025-09-17",
       "updated": "2025-09-17",
-      "notes": ""
+      "notes": "Combined days and hours calculation implemented with sequence processing."
     },
     {
       "id": "US-004",
