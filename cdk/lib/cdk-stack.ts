@@ -36,18 +36,13 @@ export class CdkStack extends cdk.Stack {
           'node_modules/**/.*',
           'node_modules/**/src/**',
           'node_modules/**/lib/**',
-          'node_modules/**/dist/**'
+          'node_modules/**/dist/**',
+          'node_modules/**/.bin/**',
+          'node_modules/**/*.exe',
+          'node_modules/**/*.cmd',
+          'node_modules/**/*.bat',
+          'node_modules/**/*.sh'
         ],
-        bundling: {
-          image: lambda.Runtime.NODEJS_22_X.bundlingImage,
-          command: [
-            'bash', '-c',
-             'cp -r dist /asset-output/ && cp package.json /asset-output/ && cp -r node_modules /asset-output/'
-          ],
-          environment: {
-            CI: 'true'
-          }
-        },
       }),
       handler: 'dist/index.handler',
       environment: {
