@@ -38,8 +38,18 @@ export class CdkStack extends cdk.Stack {
           'node_modules/**/lib/**',
           'node_modules/**/dist/**'
         ],
+        bundling: {
+          image: lambda.Runtime.NODEJS_22_X.bundlingImage,
+          command: [
+            'bash', '-c',
+             'cp -r dist /asset-output/ && cp package.json /asset-output/ && cp -r node_modules /asset-output/'
+          ],
+          environment: {
+            CI: 'true'
+          }
+        },
       }),
-      handler: 'index.handler',
+      handler: 'dist/index.handler',
       environment: {
         NODE_ENV: 'production',
       },
