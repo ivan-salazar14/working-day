@@ -13,7 +13,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "cdk:bootstrap": "cd cdk && npm run cdk bootstrap",
-    "cdk:deploy": "cd cdk && npm run cdk deploy --cloudformation-execution-policies arn:aws:iam::177602935194:policy/permisosCDKBootstrap",
+    "cdk:deploy": "cd cdk && cdk deploy CdkStack --cloudformation-execution-policies arn:aws:iam::177602935194:policy/permisosCDKBootstrap",
     "cdk:synth": "cd cdk &&  npm run cdk synth"
   },
   "dependencies": {

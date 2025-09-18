@@ -13,18 +13,33 @@ export class CdkStack extends cdk.Stack {
     const businessDateLambda = new lambda.Function(this, 'BusinessDateFunction', {
       runtime: lambda.Runtime.NODEJS_22_X,
       code: lambda.Code.fromAsset(path.join(__dirname, '../../'), {
-        bundling: {
-          image: lambda.Runtime.NODEJS_22_X.bundlingImage,
-          command: [
-            'bash', '-c',
-             'npm install pnpm --no-save --cache /tmp/.npm && ./node_modules/.bin/pnpm install --cache /tmp/.pnpm --no-frozen-lockfile  && ./node_modules/.bin/pnpm run build && cp -r dist/* /asset-output/ && cp package.json /asset-output/'
-          ],
-          environment: {
-            CI: 'true'
-          }
-        },
+        exclude: [
+          '.git',
+          '*.log',
+          'cdk',
+          'test',
+          '.env',
+          'src',
+          'tsconfig.json',
+          '*.md',
+          '.gitignore',
+          'node_modules/.pnpm',
+          'node_modules/**/test*/**',
+          'node_modules/**/example*/**',
+          'node_modules/**/doc*/**',
+          'node_modules/**/*.test.*',
+          'node_modules/**/*.spec.*',
+          'node_modules/**/*.md',
+          'node_modules/**/README*',
+          'node_modules/**/CHANGELOG*',
+          'node_modules/**/LICENSE*',
+          'node_modules/**/.*',
+          'node_modules/**/src/**',
+          'node_modules/**/lib/**',
+          'node_modules/**/dist/**'
+        ],
       }),
-      handler: 'dist/index.handler',
+      handler: 'index.js.handler',
       environment: {
         NODE_ENV: 'production',
       },
