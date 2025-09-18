@@ -8,7 +8,7 @@ export class BusinessDateService {
     let current = startDate;
     let added = 0;
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    const holidayDates = new Set(holidays.map(h => h.date));
+    const holidayDates = new Set(holidays);
 
     while (added < days) {
       current = current.plus({ days: 1 });
@@ -23,7 +23,7 @@ export class BusinessDateService {
     let current = startDate;
     let added = 0;
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    const holidayDates = new Set(holidays.map(h => h.date));
+    const holidayDates = new Set(holidays);
 
     while (added < hours) {
       if (this.isBusinessHour(current, holidayDates)) {
@@ -38,7 +38,7 @@ export class BusinessDateService {
 
   async getHolidayDates(): Promise<Set<string>> {
     const holidays = await this.holidaysAdapter.fetchHolidays();
-    return new Set(holidays.map(h => h.date));
+    return new Set(holidays);
   }
 
   isBusinessDay(date: DateTime, holidayDates: Set<string>): boolean {
@@ -60,12 +60,31 @@ export class BusinessDateService {
       return date.set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
     }
     if (hour >= 17) {
-      return date.plus({ days: 1 }).set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
+      return date.set({ hour: 17, minute: 0, second: 0, millisecond: 0 });
     }
     if (hour === 12 && minute >= 0 && minute < 60) {
       return date.set({ hour: 13, minute: 0, second: 0, millisecond: 0 });
     }
     return date.set({ second: 0, millisecond: 0 });
+  }
+
+  async adjustToBusinessTimeBackwards(date: DateTime, holidayDates: Set<string>): Promise<DateTime> {
+    let adjusted = date.set({ second: 0, millisecond: 0 });
+
+    // If not a business day, go back to previous business day at 5 PM
+    while (!this.isBusinessDay(adjusted, holidayDates)) {
+      adjusted = adjusted.minus({ days: 1 }).set({ hour: 17, minute: 0 });
+    }
+
+    // Adjust time to closest past business time
+    const hour = adjusted.hour;
+    if (hour < 8) {
+      adjusted = adjusted.set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
+    } else {
+      adjusted = adjusted.set({ second: 0, millisecond: 0 });
+    }
+
+    return adjusted;
   }
 
   isBusinessHour(date: DateTime, holidayDates: Set<string>): boolean {
@@ -78,7 +97,7 @@ export class BusinessDateService {
       return false;
     }
     const hour = date.hour;
-    if (hour < 8 || hour >= 17) {
+    if (hour < 9 || hour > 17) {
       return false;
     }
     if (hour === 12) {

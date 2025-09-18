@@ -18,14 +18,12 @@ export class CalculateBusinessDateUseCase {
     } else {
       start = DateTime.now().setZone('America/Bogota');
     }
-
-    start = this.businessDateService.adjustToBusinessTime(start);
-
     const holidayDates = await this.businessDateService.getHolidayDates();
-    while (!this.businessDateService.isBusinessDay(start, holidayDates)) {
-      start = start.plus({ days: 1 });
+    if (!holidayDates) {
+      throw new Error('Unable to fetch holidays data');
     }
 
+    start = await this.businessDateService.adjustToBusinessTimeBackwards(start, holidayDates);
     let result: DateTime = start;
     if (days) {
       result = await this.businessDateService.addBusinessDays(result, days);
@@ -33,6 +31,10 @@ export class CalculateBusinessDateUseCase {
     if (hours) {
       result = await this.businessDateService.addBusinessHours(result, hours);
     }
-    return result.toUTC().toISO()!;
+    // Ensure the result is within business hours if not already and hours were added
+    if (hours && !this.businessDateService.isBusinessHour(result, holidayDates)) {
+      result = this.businessDateService.nextBusinessHour(result, holidayDates);
+    }
+    return result.toUTC().toISO({ suppressMilliseconds: true })!;
   }
 }
