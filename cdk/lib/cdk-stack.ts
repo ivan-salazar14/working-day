@@ -39,7 +39,7 @@ export class CdkStack extends cdk.Stack {
           'node_modules/**/dist/**'
         ],
       }),
-      handler: 'index.js.handler',
+      handler: 'index.handler',
       environment: {
         NODE_ENV: 'production',
       },
