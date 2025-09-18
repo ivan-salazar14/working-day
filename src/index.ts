@@ -1,16 +1,18 @@
-// Main entry point for Colombian Business Date Calculator API
+import serverless from 'serverless-http';
 import express from 'express';
 import { businessDateRouter } from './presentation/routes/businessDateRoutes';
 
 const app = express();
-
 app.use(express.json());
 app.use('/api', businessDateRouter);
 
-const PORT = process.env.PORT || 3002;
-
+// For local development
+if (require.main === module) {
+  const PORT = process.env.PORT || 3002;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
+}
 
-export default app;
+// Export for Lambda
+export const handler = serverless(app);
