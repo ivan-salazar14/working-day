@@ -2,7 +2,7 @@
   "name": "colombian-business-date-calculator-api",
   "version": "1.0.0",
   "description": "API for calculating business dates in Colombia",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc",
