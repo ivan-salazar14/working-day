@@ -80,14 +80,6 @@ export class BusinessDateService {
     const hour = adjusted.hour;
     if (hour < 8) {
       adjusted = adjusted.set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
-    } else if (hour >= 17) {
-      // Go to 8:00 next business day
-      adjusted = adjusted.plus({ days: 1 }).set({ hour: 8, minute: 0, second: 0, millisecond: 0 });
-      while (!this.isBusinessDay(adjusted, holidayDates)) {
-        adjusted = adjusted.plus({ days: 1 });
-      }
-    } else if (hour === 12) {
-      adjusted = adjusted.set({ hour: 13, minute: 0, second: 0, millisecond: 0 });
     } else {
       adjusted = adjusted.set({ second: 0, millisecond: 0 });
     }
@@ -105,7 +97,7 @@ export class BusinessDateService {
       return false;
     }
     const hour = date.hour;
-    if (hour < 8 || hour >= 17) {
+    if (hour < 9 || hour > 17) {
       return false;
     }
     if (hour === 12) {
