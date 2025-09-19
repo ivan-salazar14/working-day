@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon';
-import { Holiday, HolidaysAdapter } from '../../infrastructure/adapters/holidaysAdapter';
+import { HolidayProvider } from '../ports/holidayProvider';
 
 export class BusinessDateService {
-  constructor(private holidaysAdapter: HolidaysAdapter) {}
+  constructor(private holidaysAdapter: HolidayProvider) {}
 
   async addBusinessDays(startDate: DateTime, days: number): Promise<DateTime> {
     let current = startDate;

@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon';
+import { HolidayProvider } from '../../domain/ports/holidayProvider';
 
 export type Holiday = string;
 
-export class HolidaysAdapter {
+export class HolidaysAdapter implements HolidayProvider {
   private cache: Holiday[] | null = null;
   private cacheExpiry: DateTime | null = null;
 
