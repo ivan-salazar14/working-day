@@ -13,37 +13,19 @@ export class CdkStack extends cdk.Stack {
     const businessDateLambda = new lambda.Function(this, 'BusinessDateFunction', {
       runtime: lambda.Runtime.NODEJS_22_X,
       code: lambda.Code.fromAsset(path.join(__dirname, '../../'), {
-        exclude: [
-          '.git',
-          '*.log',
-          'cdk',
-          'test',
-          '.env',
-          'src',
-          'tsconfig.json',
-          '*.md',
-          '.gitignore',
-          'node_modules/.pnpm',
-          'node_modules/**/test*/**',
-          'node_modules/**/example*/**',
-          'node_modules/**/doc*/**',
-          'node_modules/**/*.test.*',
-          'node_modules/**/*.spec.*',
-          'node_modules/**/*.md',
-          'node_modules/**/README*',
-          'node_modules/**/CHANGELOG*',
-          'node_modules/**/LICENSE*',
-          'node_modules/**/.*',
-          'node_modules/**/src/**',
-          'node_modules/**/dist/**',
-          'node_modules/**/.bin/**',
-          'node_modules/**/*.exe',
-          'node_modules/**/*.cmd',
-          'node_modules/**/*.bat',
-          'node_modules/**/*.sh'
-        ],
+        exclude: ['.git', '*.log', 'cdk', 'test', '.env', 'src', 'tsconfig.json', '*.md', '.gitignore', 'node_modules'],
+        bundling: {
+          image: lambda.Runtime.NODEJS_22_X.bundlingImage,
+          command: [
+            'bash', '-c',
+            'npm install --cache /tmp/.npm && npx esbuild dist/index.js --bundle --platform=node --outfile=/asset-output/index.js --external:aws-sdk'
+          ],
+          environment: {
+            CI: 'true'
+          }
+        },
       }),
-      handler: 'dist/index.handler',
+      handler: 'index.handler',
       environment: {
         NODE_ENV: 'production',
       },
