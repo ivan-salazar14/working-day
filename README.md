@@ -1,4 +1,4 @@
-# Colombian Business Date Calculator API
+# Business Date Calculator API
 
 This API provides a service to calculate future dates and times by adding a specified number of business days and/or hours to a starting point, adhering to Colombian business rules.
 
@@ -152,3 +152,77 @@ All tests use mocked holiday data and verify correct UTC date calculations.
 ## Postman Collection
 
 Import the `postman_collection.json` file to test the API endpoints.
+
+## Deployment with AWS CDK
+
+This application is configured for deployment to AWS using AWS CDK (Cloud Development Kit).
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- AWS CLI configured with appropriate permissions
+- AWS CDK CLI (`npm install -g aws-cdk`)
+
+### Deployment Steps
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Build the Application**
+   ```bash
+   npm run build
+   ```
+
+3. **Bootstrap CDK (First Time Only)**
+   ```bash
+   npm run cdk:bootstrap
+   ```
+   This sets up the CDK environment in your AWS account.
+
+4. **Deploy to AWS**
+   ```bash
+   npm run cdk:deploy
+   ```
+   This will:
+   - Create a Lambda function with the bundled code
+   - Set up API Gateway with the `/api/calculate` endpoint
+   - Deploy to your default AWS region
+
+### CDK Scripts
+
+- `npm run cdk:bootstrap` - Initialize CDK in your AWS account
+- `npm run cdk:deploy` - Deploy the application
+- `npm run cdk:synth` - Synthesize CloudFormation template without deploying
+- `npm run cdk:destroy` - Remove all deployed resources
+
+### After Deployment
+
+Once deployed, CDK will provide the API Gateway URL. The endpoint will be:
+
+```
+https://{api-id}.execute-api.{region}.amazonaws.com/prod/api/calculate
+```
+
+You can then use this URL to make requests as described in the API documentation above.
+
+### Configuration
+
+The CDK stack is configured in `cdk/lib/cdk-stack.ts` with:
+- Node.js 22.x runtime
+- 512MB memory allocation
+- API Gateway integration
+- Esbuild bundling for optimized package size
+
+### Troubleshooting
+
+- **Permission Errors**: Ensure your AWS CLI is configured with appropriate IAM permissions
+- **Package Size**: The deployment uses esbuild bundling to keep the Lambda package under AWS limits
+- **Region**: Deploy to your preferred AWS region by setting the `AWS_DEFAULT_REGION` environment variable
+
+### Cost Considerations
+
+- Lambda: Pay per request and compute time
+- API Gateway: Pay per request
+- No charges when not in use
