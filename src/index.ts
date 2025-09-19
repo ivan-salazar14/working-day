@@ -16,3 +16,6 @@ if (require.main === module) {
 
 // Export for Lambda
 export const handler = serverless(app);
+
+// Export for testing
+export { app };

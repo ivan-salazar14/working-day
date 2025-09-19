@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { CalculateBusinessDateUseCase } from '../../application/useCases/calculateBusinessDateUseCase';
 import { BusinessDateRequestSchema } from '../../domain/entities/businessDateRequest';
+import { ResponseFormatter } from '../utils/responseFormatter';
 
 export class BusinessDateController {
   constructor(private calculateBusinessDateUseCase: CalculateBusinessDateUseCase) {}
@@ -15,19 +16,14 @@ export class BusinessDateController {
 
       const validationResult = BusinessDateRequestSchema.safeParse(rawRequest);
       if (!validationResult.success) {
-        res.status(400).json({ error: 'InvalidParameters', message: validationResult.error.errors[0].message });
+        ResponseFormatter.validationError(res, validationResult.error.errors[0].message);
         return;
       }
 
       const result = await this.calculateBusinessDateUseCase.execute(validationResult.data);
-      res.json({ date: result });
+      ResponseFormatter.success(res, result);
     } catch (error) {
-      const message = (error as Error).message;
-      if (message.includes('fetch holidays')) {
-        res.status(503).json({ error: 'ServiceUnavailable', message: 'Unable to fetch holidays data' });
-      } else {
-        res.status(400).json({ error: 'InvalidParameters', message });
-      }
+      ResponseFormatter.error(res, error as Error);
     }
   }
 }

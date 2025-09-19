@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import request from 'supertest';
-import app from '../src/index.js';
+import { app } from '../src/index';
 
 describe('Business Date Calculator API', () => {
   it('should handle Friday 5:00 p.m. with hours=1', async () => {
