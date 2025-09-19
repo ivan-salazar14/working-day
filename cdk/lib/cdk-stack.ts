@@ -35,7 +35,6 @@ export class CdkStack extends cdk.Stack {
           'node_modules/**/LICENSE*',
           'node_modules/**/.*',
           'node_modules/**/src/**',
-          'node_modules/**/lib/**',
           'node_modules/**/dist/**',
           'node_modules/**/.bin/**',
           'node_modules/**/*.exe',
